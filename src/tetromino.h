@@ -2,6 +2,8 @@
 #define TETROMINO_H
 
 #include <boost/fusion/adapted/std_tuple.hpp>
+#include <random>
+#include <memory>
 
 #define X_INDEX 0
 #define Y_INDEX 1
@@ -90,4 +92,20 @@ public:
     void rotateRight();    
 };
 
+
+class TetrominoFactory {
+protected:
+    int x;
+    std::uniform_int_distribution<int> dis;
+    std::default_random_engine generator;
+
+public:
+    TetrominoFactory(int top_left_x);
+    std::unique_ptr<Tetromino> createRandomTetromino();
+};
+
 #endif /* TETROMINO_H */
+
+
+
+

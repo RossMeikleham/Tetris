@@ -1,6 +1,8 @@
 #include "tetromino.h"
 
 #include <boost/fusion/algorithm/iteration/for_each.hpp>
+#include <random>
+#include <memory>
 
 using namespace std;
 
@@ -51,10 +53,10 @@ void I_Tetromino::rotateRight() {}
 /**** O Tetronimo ****/ 
 
 O_Tetromino::O_Tetromino(int top_left_x) {
-    blocks = make_tuple(make_tuple(top_left_x, 0),
+    blocks = make_tuple(make_tuple(top_left_x - 1, 0),
+                        make_tuple(top_left_x, 0),
                         make_tuple(top_left_x + 1, 0),
-                        make_tuple(top_left_x, 1),
-                        make_tuple(top_left_x + 1, 1)
+                        make_tuple(top_left_x + 2, 0)
                        );
 }
 
@@ -68,7 +70,7 @@ void O_Tetromino::rotateRight() {}
 
 T_Tetromino::T_Tetromino(int top_left_x) {
     blocks = make_tuple(make_tuple(top_left_x, 0),
-                        make_tuple(top_left_x + 1, 0),
+                        make_tuple(top_left_x - 1, 1),
                         make_tuple(top_left_x, 1),
                         make_tuple(top_left_x + 1, 1)
                        );
@@ -83,8 +85,8 @@ void T_Tetromino::rotateRight() {}
 S_Tetromino::S_Tetromino(int top_left_x) {
     blocks = make_tuple(make_tuple(top_left_x, 0),
                         make_tuple(top_left_x + 1, 0),
-                        make_tuple(top_left_x, 1),
-                        make_tuple(top_left_x + 1, 1)
+                        make_tuple(top_left_x - 1, 1),
+                        make_tuple(top_left_x, 1)
                        );
 }
 
@@ -96,8 +98,8 @@ void S_Tetromino::rotateRight() {}
 /**** Z Tetronimo ****/ 
 
 Z_Tetromino::Z_Tetromino(int top_left_x) {
-    blocks = make_tuple(make_tuple(top_left_x, 0),
-                        make_tuple(top_left_x + 1, 0),
+    blocks = make_tuple(make_tuple(top_left_x - 1, 0),
+                        make_tuple(top_left_x, 0),
                         make_tuple(top_left_x, 1),
                         make_tuple(top_left_x + 1, 1)
                        );
@@ -112,9 +114,9 @@ void Z_Tetromino::rotateRight() {}
 /**** J Tetronimo ****/ 
 
 J_Tetromino::J_Tetromino(int top_left_x) {
-    blocks = make_tuple(make_tuple(top_left_x, 0),
+    blocks = make_tuple(make_tuple(top_left_x - 1, 0),
+                        make_tuple(top_left_x, 0),
                         make_tuple(top_left_x + 1, 0),
-                        make_tuple(top_left_x, 1),
                         make_tuple(top_left_x + 1, 1)
                        );
 }
@@ -126,10 +128,10 @@ void J_Tetromino::rotateRight() {}
 /**** L Tetronimo ****/ 
 
 L_Tetromino::L_Tetromino(int top_left_x) {
-    blocks = make_tuple(make_tuple(top_left_x, 0),
-                        make_tuple(top_left_x + 1, 0),
-                        make_tuple(top_left_x, 1),
-                        make_tuple(top_left_x + 1, 1)
+    blocks = make_tuple(make_tuple(top_left_x - 1, 0),
+                        make_tuple(top_left_x, 0),
+                        make_tuple(top_left_x + 1, 1),
+                        make_tuple(top_left_x -1, 1)
                        );
 }
 
@@ -137,15 +139,34 @@ void L_Tetromino::rotateLeft() {}
 void L_Tetromino::rotateRight() {}   
 
 
+/**** Tetromino Factory ****/
 
-#include <stdio.h>
-
-int main() {
-    O_Tetromino o {0};
-    printf("%d\n", get<Y_INDEX>(get<3>(o.getBlocks())));
-    o.descend();
-    return 0;
+TetrominoFactory::TetrominoFactory(int top_left_x) {
+    dis = uniform_int_distribution<>(0, 6);
+    x = top_left_x;
 }
 
+
+/* Create a random tetromino, returns a unique pointer
+   to a random new tetromino */
+std::unique_ptr<Tetromino> TetrominoFactory::createRandomTetromino() {
+    
+    std::unique_ptr<Tetromino> t;
+    int n = this->dis(this->generator); 
+    
+    /* Create Tetromino relating to the randomly
+       generated number */
+    switch (n) {
+        case 0: t.reset(new I_Tetromino(this->x)); break; 
+        case 1: t.reset(new O_Tetromino(this->x)); break; 
+        case 2: t.reset(new T_Tetromino(this->x)); break;
+        case 3: t.reset(new S_Tetromino(this->x)); break;
+        case 4: t.reset(new Z_Tetromino(this->x)); break;
+        case 5: t.reset(new J_Tetromino(this->x)); break;
+        case 6: t.reset(new L_Tetromino(this->x)); break;
+    }
+    
+    return t;
+}
 
 
