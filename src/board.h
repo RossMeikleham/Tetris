@@ -1,4 +1,5 @@
-
+#ifndef BOARD_H
+#define BOARD_H
 
 #include <vector>
 #include "tetromino.h"
@@ -24,3 +25,5 @@ public:
 
     void fill_row(int row);
 };
+
+#endif //BOARD_H

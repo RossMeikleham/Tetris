@@ -68,15 +68,3 @@ void Board::fill_row(int row) {
 
 }
 
-
-int main() {
-    Board board {8, 20};
-    board.print_board();
-    board.fill_row(3);
-    board.print_board();
-    board.eliminateRows();
-    board.print_board();
-    return 0;
-}
-
-
