@@ -1,16 +1,18 @@
-#ifndef GRAPHICS_H
-#define GRAPHICS_H
+#ifndef TETRIS_UI_H
+#define TETRIS_UI_H
 
 #include "board.h"
+#include <memory>
 
-class Graphics {
+class Tetris_UI {
     
 public:
-    Graphics();
-
-
     // Render current board state
-    void draw_board(Board &board);
+    virtual void draw_board(Board &board) = 0;
 };
 
-#endif //GRAPHICS_H
+
+std::unique_ptr<Tetris_UI> createQT_UI();
+
+
+#endif //TETTRIS_UI_H
