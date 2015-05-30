@@ -11,7 +11,7 @@ protected:
     Board board;
     int score;
 
-    bool isCollision(Tetromino *t);
+    bool isCollision(std::unique_ptr<Tetromino> const &t);
 
 public:
     Game();

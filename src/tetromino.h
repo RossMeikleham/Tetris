@@ -7,6 +7,7 @@
 
 #define X_INDEX 0
 #define Y_INDEX 1
+#define TETROMINO_BLOCKS 4
 
 typedef std::tuple<int, int> Pos; //X and Y coordinates
 typedef std::tuple<Pos, Pos, Pos, Pos> Blocks;
@@ -27,6 +28,12 @@ public:
 
    // Returns coordinates of all 4 pieces in the tetromino
    Blocks getBlocks();
+
+   // Move the tetromino 1 block to the left
+   void moveLeft();
+
+   // Move the tetromino 1 block to the right
+   void moveRight();
    
    // Rotate the tetronimo 90 degrees anticlockwise 
    virtual void rotateLeft () = 0;

@@ -1,5 +1,6 @@
 
 #include "board.h"
+#include <stdio.h>
 
 Board::Board(int w, int h) {
    width = w;
@@ -12,9 +13,18 @@ Board::Board(int w, int h) {
 }
 
 
-#include <stdio.h>
+// Insert a single block in the specified position 
+void Board::insert(int w, int h) {
+    state[h][w] = true;    
+}
 
-int Board::eliminateRows() {
+
+bool Board::isFilled(int w, int h) {
+    return this->state[h][w];
+}
+
+
+int Board::clearRows() {
 
    int count = 0;
 
@@ -50,7 +60,8 @@ int Board::eliminateRows() {
 }
 
 
-
+/* Prints out current state of the board, 1 represents the space
+   being occupied, 0 otherwise */
 void Board::print_board() {
     for (int i = 0; i < this->height; i++) {
         for (int j = 0; j < this->width; j++) {
@@ -67,4 +78,3 @@ void Board::fill_row(int row) {
     }
 
 }
-

@@ -11,15 +11,19 @@ class Board {
 protected:
     int width;
     int height;
-    vector<bool> *state;
+    vector<bool> *state; //Each vector represents the state of a row
 
 public:
     Board(int w, int h);
 
-    // Destory rows which are full and returns number of rows filled
-    int eliminateRows();
-    
+    // Clear rows which are full and returns number of rows filled
+    int clearRows();
+   
+    // Insert a single block in the specified position 
     void insert(int w, int h);
+
+    // Check if a position on the board has been filled by a block
+    bool isFilled(int w, int h);
 
     void print_board();
 

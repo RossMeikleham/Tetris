@@ -13,6 +13,19 @@ void Tetromino::descend() {
     });
 }
 
+void Tetromino::moveLeft() {
+    boost::fusion::for_each(this->blocks, [](Pos &pos) {
+        get<X_INDEX>(pos) -=1;
+    });
+}
+
+void Tetromino::moveRight() {
+    boost::fusion::for_each(this->blocks, [](Pos &pos) {
+        get<X_INDEX>(pos) +=1;
+    });
+
+}
+
 /* Return the lowest y position of the tetromino 
  * i.e. the position with the largest y value */ 
 int Tetromino::lowestPos() {    

@@ -1,0 +1,3 @@
+
+all:
+	gcc -stc=c++11ncurses.cpp -lncurses
