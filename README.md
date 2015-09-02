@@ -1,7 +1,7 @@
 # Tetris
 Simple Tetris Clone in C++14 using the Qt framework.
 
-[travis](https://travis-ci.org/nlohmann/json.svg?branch=master)
+[![Build Status](https://travis-ci.org/RossMeikleham/Tetris.svg?branch=master)](https://travis-ci.org/RossMeikleham/Tetris)
 
 #Instructions
 
