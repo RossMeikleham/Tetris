@@ -1,7 +1,6 @@
 #ifndef TETROMINO_H
 #define TETROMINO_H
 
-#include <boost/fusion/adapted/std_tuple.hpp>
 #include <random>
 #include <memory>
 
@@ -25,7 +24,7 @@ protected:
     std::vector<Pos> blocks; //Coordinates of all blocks in the tetromino
 
 public:   
-   
+      
    // Move the tetromino 1 Y coordinate down
    Q_INVOKABLE void descend();
 

@@ -10,7 +10,7 @@ Board::Board(int w, int h, QObject *parent) :
    m_width(w),
    m_height(h) {
  
-   state.resize(w, vector<bool>(h, false)); 
+   state.resize(h, vector<bool>(w, false)); 
 }
 
 
