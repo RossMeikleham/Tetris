@@ -21,6 +21,7 @@ install:
 
     
 script:
+    - g++ -v
     - qmake tetris.pro
     - make
     - qmake tetris_tests.pro
