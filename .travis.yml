@@ -18,13 +18,12 @@ install:
     - source /opt/qt55/bin/qt55-env.sh
     - if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-5; fi
     - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
-    - if [ "$CXX" = "g++" ]; then alias g++="g++-5"; fi
+    - alias g++="g++-5"
     - g++ --version
     - $CXX --version
 
     
 script:
-    - $CXX --version
     - qmake tetris.pro
     - make
     - qmake tetris_tests.pro
