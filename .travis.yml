@@ -9,15 +9,11 @@ compiler:
   - gcc
 
 before_install:
-  # g++4.8.1
-  - if [ "$CXX" == "g++" ]; then sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test; fi
-  - sudo apt-add-repository ppa:ubuntu-sdk-team/ppa -y
+  - sudo apt-add-repository ppa:beineri/opt-qt55 -y
   - sudo apt-get update -q
 
 install:
-    - if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.8; fi
-    - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8"; fi
-    - sudo apt-get install qtdeclarative5-dev qtcreator qt5-qmake
+    - sudo apt-get install qt55quick1 qt55creator
 
     
 
