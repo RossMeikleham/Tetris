@@ -6,11 +6,11 @@ isEmpty(CXX) {
 }
 
 QMAKE_CXX = $${CXX}
-
+QMAKE_CXX_FLAGS += std=c++14
 
 QT += quick qml widgets
 TARGET = tetris
-CONFIG += c++14
+CONFIG +=
 
 SOURCES += src/*.cpp
 HEADERS += src/*.h
