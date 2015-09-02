@@ -1,12 +1,14 @@
 # Tetris
 Simple Tetris Clone in C++14 using the Qt framework.
 
+[travis]("https://travis-ci.org/nlohmann/json.svg?branch=master")
+
 #Instructions
 
 
 ###Required:
-- Qt 5.5
-- Compiler with C++14 features (gcc, clang, VC2015)
+- Qt 5.4 or above
+- Compiler with C++14 features (gcc 5.1+, clang 3.4+, VC2015+)
 
 ###Building:
 
