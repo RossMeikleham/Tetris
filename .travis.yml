@@ -16,7 +16,7 @@ before_install:
   - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
   
 install:
-    - sudo apt-get install qt55quick1 qt55creator
+    - sudo apt-get install qt55quick1 qt55creator qt55tools
 
     
 
