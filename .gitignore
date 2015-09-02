@@ -1,2 +1,5 @@
 *.o
 moc_*
+*.swp
+*.a
+tetris
