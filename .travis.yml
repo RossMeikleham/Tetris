@@ -1,15 +1,5 @@
 #Linux build
 
-addons:
-    apt:
-        sources:
-            - llvm-toolchain-precise
-            - ubuntu-toolchain-r-test
-        packages:
-            - clang-3.7
-            - g++-5
-            - gcc-5
-
 env:
   - QTVER=55 
   
@@ -21,18 +11,30 @@ compiler:
 before_install:
   - sudo apt-add-repository ppa:beineri/opt-qt55 -y
   - sudo apt-get update -q
-  - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
   
 install:
     - sudo apt-get install qt55base qt55quick1 qt55creator qt55tools
     - source /opt/qt55/bin/qt55-env.sh
+    - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
+    - g++ --version
+    - echo $CXX
 
     
 script:
-    - export CXX="g++-5"
-    - g++ -v
+    - $CXX --version
     - qmake tetris.pro
     - make
     - qmake tetris_tests.pro
     - make
     - ./tetris_tests
+
+
+addons:
+    apt:
+        sources:
+            - llvm-toolchain-precise
+            - ubuntu-toolchain-r-test
+        packages:
+            - clang-3.7
+            - g++-5
+            - gcc-5
