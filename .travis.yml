@@ -29,6 +29,7 @@ install:
 
     
 script:
+    - export CXX="g++-5"
     - g++ -v
     - qmake tetris.pro
     - make
