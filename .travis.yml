@@ -1,5 +1,15 @@
 #Linux build
 
+addons:
+    apt:
+        sources:
+            - llvm-toolchain-precise
+            - ubuntu-toolchain-r-test
+        packages:
+            - clang-3.7
+            - g++-5
+            - gcc-5
+
 env:
   - QTVER=55 
   
@@ -10,10 +20,8 @@ compiler:
 
 before_install:
   - sudo apt-add-repository ppa:beineri/opt-qt55 -y
-  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
   - sudo apt-get update -q
-  - sudo apt-get install -qq g++-5
-  - export CXX="g++-5"
+  - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
   
 install:
     - sudo apt-get install qt55base qt55quick1 qt55creator qt55tools
