@@ -6,7 +6,7 @@ env:
 language: cpp
 
 compiler:
-  - gcc
+  - g++
 
 before_install:
   - sudo apt-add-repository ppa:beineri/opt-qt55 -y
