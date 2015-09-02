@@ -5,41 +5,47 @@
 #include <random>
 #include <memory>
 
+#include <QObject>
+
 #define X_INDEX 0
 #define Y_INDEX 1
 #define TETROMINO_BLOCKS 4
 
-typedef std::tuple<int, int> Pos; //X and Y coordinates
-typedef std::tuple<Pos, Pos, Pos, Pos> Blocks;
+typedef struct {
+    int y;
+    int x;
+} Pos;
+
 
 // Details of Tetronimo pieces 
-class Tetromino {
+class Tetromino : public QObject {
+    Q_OBJECT
 
 protected: 
-    Blocks blocks; //Coordinates of all blocks in the tetromino
+    std::vector<Pos> blocks; //Coordinates of all blocks in the tetromino
 
 public:   
    
    // Move the tetromino 1 Y coordinate down
-   void descend();
+   Q_INVOKABLE void descend();
 
    // Return the lowest Y position of the tetromino 
-   int lowestPos();
+   int lowestPos() const;
 
    // Returns coordinates of all 4 pieces in the tetromino
-   Blocks getBlocks();
+   std::vector<Pos> getBlocks() const;
 
    // Move the tetromino 1 block to the left
-   void moveLeft();
+   Q_INVOKABLE void moveLeft();
 
    // Move the tetromino 1 block to the right
-   void moveRight();
+   Q_INVOKABLE void moveRight();
    
    // Rotate the tetronimo 90 degrees anticlockwise 
-   virtual void rotateLeft () = 0;
+   Q_INVOKABLE virtual void rotateLeft () = 0;
    
    // Rotate the tetronimo 90 degrees clockwise 
-   virtual void rotateRight() = 0; 
+   Q_INVOKABLE virtual void rotateRight() = 0; 
 
 };
 
@@ -100,15 +106,19 @@ public:
 };
 
 
-class TetrominoFactory {
+class TetrominoFactory : public QObject{
+    Q_OBJECT
+
+
 protected:
     int x;
     std::uniform_int_distribution<int> dis;
     std::default_random_engine generator;
 
 public:
-    TetrominoFactory(int top_left_x);
-    std::unique_ptr<Tetromino> createRandomTetromino();
+    TetrominoFactory(int top_left_x, QObject *parent = 0);
+    TetrominoFactory(QObject *parent = 0);
+    Q_INVOKABLE Tetromino *createRandomTetromino();
 };
 
 #endif /* TETROMINO_H */
