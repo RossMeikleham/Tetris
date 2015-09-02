@@ -4,8 +4,8 @@ env:
   - QTVER=55 
 
 before_install:
-    - sudo apt-add-repository ppa:beineri/opt-qt55
-    - sudo apt-get update
+    - sudo apt-add-repository ppa:beineri/opt-qt55 -y
+    - sudo apt-get update -q
 
 install:
     - sudo apt-get install qt-latest qtcreator-latest
