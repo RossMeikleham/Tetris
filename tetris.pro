@@ -10,8 +10,7 @@ QMAKE_CXX = $${CXX}
 
 QT += quick qml widgets
 TARGET = tetris
-QMAKE_CXXFLAGS += -std=c++14
-CONFIG += 
+CONFIG += c++14
 
 SOURCES += src/*.cpp
 HEADERS += src/*.h
