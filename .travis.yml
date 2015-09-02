@@ -13,8 +13,8 @@ install:
     
 
 script:
-    - qmake tetris
+    - qmake tetris.pro
     - make
-    - qmake tetris_tests
+    - qmake tetris_tests.pro
     - make
     - ./tetris_tests
