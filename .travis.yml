@@ -1,0 +1,20 @@
+#Linux build
+
+env:
+  - QTVER=55 
+
+before_install:
+    - sudo apt-add-repository ppa:beineri/opt-qt55
+    - sudo apt-get update
+
+install:
+    - sudo apt-get install qt-latest qtcreator-latest
+
+    
+
+script:
+    - qmake tetris
+    - make
+    - qmake tetris_tests
+    - make
+    - ./tetris_tests
