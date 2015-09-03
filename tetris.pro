@@ -6,7 +6,7 @@ isEmpty(CXX) {
 }
 
 QMAKE_CXX = $${CXX}
-QMAKE_CXXFLAGS += std=c++14
+QMAKE_CXXFLAGS += -std=c++14
 
 QT += quick qml widgets
 TARGET = tetris
