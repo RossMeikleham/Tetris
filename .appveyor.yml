@@ -8,7 +8,7 @@ init:
   - dir "%SystemDrive%\Qt\5.*" /b /o
 
 install:
-  - dir "C:\Qt\5.5\mingw492_32"
+  - dir "C:\Qt\5.5\mingw492_32\bin"
   - set QTDIR=C:\Qt\5.5\mingw492_32
   - '%QTDIR%\bin\atenv2.bat'
   - set PATH=%PATH%;%QTDIR%\bin;C:\MinGW\bin
