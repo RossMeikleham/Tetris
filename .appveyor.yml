@@ -1,10 +1,16 @@
-os: unstable
+version: '{branch}-{build}'
 
+init:
+  # Gather some basic build environment details.
+  - rem set
+  - dir "%ProgramFiles(x86)%\Microsoft Visual Studio *" /b /o
+  - dir "%ProgramFiles%\Microsoft SDKs\Windows" /b /o
+  - dir "%SystemDrive%\Qt\5.*" /b /o
 
 install:
- - set QTDIR=C:\Qt\Qt5.5.0\5.5\mingw492_32
- - set PATH=%PATH%;%QTDIR%\bin;C:\MinGW\bin
-
+  - set QTDIR=C:\Qt\5.5\mingw492_32
+  - '%QTDIR%\bin\atenv2.bat'
+  - set PATH=%PATH%;%QTDIR%\bin;C:\MinGW\bin
   
 build_script:
   - qmake tetris.pro
